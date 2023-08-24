@@ -1,0 +1,36 @@
+<div class="py-0">
+  <ul class="nav nav-tabs menu-tabs py-1">
+    <li style="cursor: pointer;" class="nav-item mb-2" *ngFor="let menu of menus">
+      <a class="nav-link text-center" (click)="selectMenu(menu)" [class.active]="selectedMenu?.id === menu.id">{{ menu.title }}</a>
+    </li>
+  </ul>
+
+  <div class="tab-content menu-content container">
+    <div class="tab-pane container w3-animate-zoom" *ngFor="let menu of menus" [ngClass]="{ 'active': selectedMenu?.id === menu.id }">
+      <!-- <h3>{{ menu.title }}</h3> -->
+      <div class="row container">
+        <div class="col-md-3 mb-2"  *ngFor="let menu of menu.menuDetails">
+          <div class="card shadow-sm" style="border-radius: 30px!important; width: 280px!important; border: 1px solid #e5e5e5;">
+            <div style="height: 220px; overflow: hidden; background-color: #fff; display: flex; justify-content: center;">
+              <img [src]="menu.imageUrl" class="p-2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 25px;">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ menu.name }}</h5>
+              <p class="card-text">{{ menu.description }}</p>
+              <p class="card-text">
+                <i class="fa fa-star star-rating"></i>
+                <i class="fa fa-star star-rating"></i>
+                <i class="fa fa-star star-rating"></i>
+                <i class="fa fa-star star-rating"></i>
+              </p>
+              <div class="add">
+                <p style="font-weight: 800; font-size: 20px;" class="card-text price mt-2">{{ menu.price | currency: '₦' }}</p>
+                <p routerLink="/food/{{menu.id}}"><i class="fa fa-cart-arrow-down faCart" aria-hidden="true"></i></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
